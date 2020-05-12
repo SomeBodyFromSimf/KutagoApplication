@@ -1,0 +1,2 @@
+rootProject.name='KutagoApplication'
+include ':app'
