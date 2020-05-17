@@ -5,7 +5,7 @@
     android:id="@+id/swipe_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/dark_grey"
     tools:context=".ui.main.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             android:iconifiedByDefault="false"
+            android:textColorHint="@color/black__38"
             android:queryHint="@string/search_hint"
             android:background="@drawable/roundrect"
             android:layout_margin="10dp"/>
@@ -63,6 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorWhite"
+                android:layout_gravity="center"
                 android:gravity="center"/>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

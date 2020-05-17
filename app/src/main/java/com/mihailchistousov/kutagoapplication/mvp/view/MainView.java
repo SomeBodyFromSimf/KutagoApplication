@@ -11,4 +11,12 @@ public interface MainView extends BaseView{
     void onFilmsError(String message);
 
     void onFilmsLoaded(ResponsePage films);
+
+    void getFilms();
+
+    void snackBarMessage(String message);
+
+    void showNotFoundLayout(String text);
+
+    void hideNotFoundLayout();
 }

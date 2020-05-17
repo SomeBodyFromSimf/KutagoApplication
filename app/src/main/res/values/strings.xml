@@ -2,5 +2,8 @@
     <string name="app_name">KutagoApplication</string>
     <string name="search_hint">Поиск по названию фильма</string>
     <string name="not_found_first">По запросу \" %1$s \" ничего не найдено</string>
-    <string name="error_load_films">Не могу загрузить фильмы</string>
+    <string name="error_load_films">Проверьте соединение с интернетом и попробуйте еще раз</string>
+    <string name="repeat">Повторить</string>
+    <string name="net_available">Соединение востановлено</string>
+    <string name="not_found">Ничего не найдено</string>
 </resources>

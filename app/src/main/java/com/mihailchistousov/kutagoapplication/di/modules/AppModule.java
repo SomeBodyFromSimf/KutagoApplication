@@ -2,8 +2,6 @@ package com.mihailchistousov.kutagoapplication.di.modules;
 
 import android.content.Context;
 
-import androidx.core.content.ContextCompat;
-
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;

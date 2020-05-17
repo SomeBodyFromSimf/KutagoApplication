@@ -3,7 +3,6 @@ package com.mihailchistousov.kutagoapplication.API;
 import com.mihailchistousov.kutagoapplication.mvp.model.ResponsePage;
 
 import io.reactivex.Flowable;
-import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
