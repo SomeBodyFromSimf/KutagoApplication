@@ -189,7 +189,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             Toast.makeText(context,current_film.getTitle(),Toast.LENGTH_SHORT).show();
         }
 
-        //TODO SetOnClickListener
         public Film getCurrent_film() {
             return current_film;
         }
