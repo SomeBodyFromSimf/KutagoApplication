@@ -1,30 +1,22 @@
 package com.mihailchistousov.kutagoapplication.base;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.CallSuper;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
-import com.jakewharton.rxbinding3.view.RxView;
 import com.jakewharton.rxbinding3.widget.RxSearchView;
-import com.jakewharton.rxbinding3.widget.RxTextView;
-import com.jakewharton.rxbinding3.widget.SearchViewQueryTextEvent;
 import com.mihailchistousov.kutagoapplication.R;
 import com.mihailchistousov.kutagoapplication.di.components.AppComponent;
-import com.mihailchistousov.kutagoapplication.di.components.DaggerFilmComponent;
-import com.mihailchistousov.kutagoapplication.di.modules.FilmModule;
 import com.mihailchistousov.kutagoapplication.mvp.view.MainView;
 
 import java.util.concurrent.TimeUnit;
@@ -38,7 +30,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Created by Mihail Chistousov on 13,Май,2020
  */
-public abstract class  BaseActivity extends AppCompatActivity implements MainView {
+public abstract class  BaseActivity extends MvpAppCompatActivity implements MainView {
 
     @BindView(R.id.swipe_container)
     protected SwipeRefreshLayout swipeRefreshLayout;
@@ -86,6 +78,10 @@ public abstract class  BaseActivity extends AppCompatActivity implements MainVie
                 .map(CharSequence::toString)
                 .subscribe(this::filterListBySearchView);
         swipeRefreshLayout.setOnRefreshListener(this::onRefresh);
+        searchView.setOnCloseListener(()->{
+            snackBarMessage("close");
+            return true;
+        });
     }
 
     protected abstract void onRefresh();

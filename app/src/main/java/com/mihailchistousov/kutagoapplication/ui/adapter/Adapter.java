@@ -1,4 +1,4 @@
-package com.mihailchistousov.kutagoapplication.ui.main.adapter;
+package com.mihailchistousov.kutagoapplication.ui.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -38,12 +38,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     private List<Film> films = new ArrayList<>();
     private List<Film> savedList = new ArrayList<>();
     public boolean isFilter = false;
-    private final MainView view;
+    private final MainView mainView;
     private Context context;
     private MyViewHolder footer = null;
 
-    public Adapter(Context context, MainView view) {
-        this.view = view;
+    public Adapter(Context context, MainView mainView) {
+        this.mainView = mainView;
         this.context = context;
     }
 
@@ -58,7 +58,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         Film currentBindFilm = films.get(position);
         holder.bind(currentBindFilm);
         if(currentBindFilm.getId()<0)
-            view.getFilms();
+            mainView.getFilms();
 
     }
 
@@ -125,9 +125,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
                     isFilter = true;
                     if(!filer_list.isEmpty()) {
                         films.addAll(filer_list);
-                        view.hideNotFoundLayout();
+                        mainView.hideNotFoundLayout();
                     } else
-                        view.showNotFoundLayout(title);
+                        mainView.showNotFoundLayout(title);
                     notifyDataSetChanged();
                 })
                 .subscribe(filer_list::add);
@@ -148,10 +148,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         @BindView(R.id.repeat_button)
         public Button repeatButton;
 
-        View view;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            view = itemView;
             ButterKnife.bind(this,itemView);
         }
 
@@ -165,28 +163,32 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             } else if(film.getId() == -2) {
                 itemContainer.setVisibility(View.GONE);
                 repeatButton.setVisibility(View.VISIBLE);
+                repeatButton.setOnClickListener(this::repeat);
                 footer = this;
             } else {
                 progressBar.setVisibility(View.GONE);
                 repeatButton.setVisibility(View.GONE);
                 itemContainer.setVisibility(View.VISIBLE);
-
+                itemContainer.setOnClickListener(this::click);
+                itemContainer.setOnLongClickListener(this::longClick);
                 Glide.with(context)
                         .load(film.getPoster().getImage_url())
                         .into(image);
                 title.setText(film.getTitle());
             }
-            view.setOnClickListener(this::click);
-            view.setOnLongClickListener(this::longClick);
+
+        }
+        private void click(View view) {
+            Toast.makeText(context,current_film.getTitle(),Toast.LENGTH_SHORT).show();
+        }
+
+        private void repeat(View v) {
+            mainView.getFilms();
         }
 
         private boolean longClick(View view) {
             //TODO Add to LikeListInDB
             return false;
-        }
-
-        private void click(View view) {
-            Toast.makeText(context,current_film.getTitle(),Toast.LENGTH_SHORT).show();
         }
 
         public Film getCurrent_film() {

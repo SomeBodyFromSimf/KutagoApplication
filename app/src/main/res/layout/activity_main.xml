@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_grey"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"
@@ -21,7 +21,7 @@
             android:textColorHint="@color/black__38"
             android:queryHint="@string/search_hint"
             android:background="@drawable/roundrect"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"

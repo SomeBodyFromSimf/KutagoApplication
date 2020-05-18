@@ -1,11 +1,16 @@
 package com.mihailchistousov.kutagoapplication.mvp.view;
 
+import com.arellomobile.mvp.MvpView;
+import com.arellomobile.mvp.viewstate.strategy.SingleStateStrategy;
+import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 import com.mihailchistousov.kutagoapplication.mvp.model.ResponsePage;
 
 /**
  * Created by Mihail Chistousov on 13,Май,2020
+
  */
-public interface MainView extends BaseView{
+//@StateStrategyType(SingleStateStrategy.class)
+public interface MainView extends MvpView {
     void startLoading();
 
     void onFilmsError(String message);

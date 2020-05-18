@@ -2,7 +2,7 @@ package com.mihailchistousov.kutagoapplication.di.components;
 
 import com.mihailchistousov.kutagoapplication.di.modules.FilmModule;
 import com.mihailchistousov.kutagoapplication.di.scopes.ActivityScope;
-import com.mihailchistousov.kutagoapplication.ui.main.MainActivity;
+import com.mihailchistousov.kutagoapplication.ui.MainActivity;
 
 import dagger.Component;
 

@@ -5,10 +5,11 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.arellomobile.mvp.InjectViewState;
+import com.arellomobile.mvp.MvpPresenter;
 import com.mihailchistousov.kutagoapplication.API.KudagoAPI;
 import com.mihailchistousov.kutagoapplication.R;
 import com.mihailchistousov.kutagoapplication.Utils.Resource;
-import com.mihailchistousov.kutagoapplication.base.BasePresenter;
 import com.mihailchistousov.kutagoapplication.mvp.model.ResponsePage;
 import com.mihailchistousov.kutagoapplication.mvp.view.MainView;
 
@@ -24,14 +25,28 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Created by Mihail Chistousov on 13,Май,2020
  */
+@InjectViewState
+public class FilmPresenter extends MvpPresenter<MainView> {
 
-public class FilmPresenter extends BasePresenter<MainView> {
+    //После замены getView на getViewState удалить
+    @Inject protected MainView view;
+    protected MainView getView() {
+        return view;
+    }
+
+
 
     @Inject protected KudagoAPI api;
     @Inject protected Context context;
 
     @Inject
     public FilmPresenter() {}
+
+    @Override
+    protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
+        getView().getFilms();
+    }
 
     @SuppressLint("CheckResult")
     public void getFilms(int current_page) {

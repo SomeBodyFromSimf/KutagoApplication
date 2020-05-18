@@ -1,4 +1,4 @@
-package com.mihailchistousov.kutagoapplication.ui.main.adapter;
+package com.mihailchistousov.kutagoapplication.ui.adapter;
 
 import android.graphics.Rect;
 import android.view.View;

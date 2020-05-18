@@ -76,5 +76,10 @@ dependencies {
     def glideVersion = "4.6.1"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
 
+    //Moxy
+    def MoxyXVersion = "1.7.0"
+    implementation "tech.schoolhelper:moxy-x:$MoxyXVersion"
+    implementation "tech.schoolhelper:moxy-x-androidx:$MoxyXVersion"
+    annotationProcessor "tech.schoolhelper:moxy-x-compiler:$MoxyXVersion"
 
 }

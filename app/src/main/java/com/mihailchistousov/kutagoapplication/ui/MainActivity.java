@@ -1,4 +1,4 @@
-package com.mihailchistousov.kutagoapplication.ui.main;
+package com.mihailchistousov.kutagoapplication.ui;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -6,13 +6,15 @@ import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.mihailchistousov.kutagoapplication.base.BaseActivity;
 import com.mihailchistousov.kutagoapplication.di.components.DaggerFilmComponent;
 import com.mihailchistousov.kutagoapplication.di.modules.FilmModule;
 import com.mihailchistousov.kutagoapplication.mvp.model.ResponsePage;
 import com.mihailchistousov.kutagoapplication.mvp.presenter.FilmPresenter;
-import com.mihailchistousov.kutagoapplication.ui.main.adapter.Adapter;
-import com.mihailchistousov.kutagoapplication.ui.main.adapter.Decoration;
+import com.mihailchistousov.kutagoapplication.ui.adapter.Adapter;
+import com.mihailchistousov.kutagoapplication.ui.adapter.Decoration;
 
 import javax.inject.Inject;
 
@@ -23,8 +25,16 @@ public class MainActivity extends BaseActivity  {
 
     int pagesOnScreen = 0;
 
-    @Inject protected FilmPresenter presenter;
+    @Inject
+    @InjectPresenter
+    FilmPresenter presenter;
+
     private Adapter adapter;
+
+    @ProvidePresenter
+    FilmPresenter providePresenter() {
+        return presenter;
+    }
 
     @Override
     protected void onViewReady(Bundle savedInstanceState) {
@@ -71,15 +81,13 @@ public class MainActivity extends BaseActivity  {
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new Decoration(spanCount,10));
     }
-
-    @Override
+    //TODO Don't go here. Check why
     public void startLoading() {
         if(pagesOnScreen==0)
             visibilityView(progressBar,true);
 
     }
 
-    @Override
     public void onFilmsError(String message) {
         if(pagesOnScreen == 0) {
             visibilityView(progressBar,false);
@@ -90,7 +98,6 @@ public class MainActivity extends BaseActivity  {
         snackBarMessage(message);
     }
 
-    @Override
     public void onFilmsLoaded(ResponsePage responsePage) {
         if(pagesOnScreen==0) {
             visibilityView(progressBar,false);
